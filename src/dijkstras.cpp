@@ -7,7 +7,7 @@ vector<int> dijkstra_shortest_path(const Graph& G, int source, vector<int>& prev
     vector<bool> visited(numVertices, false);
     distances[source] = 0;
     previous[source] = -1;
-    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> minheap; // <vertex, weight>
+    priority_queue<pair<int, int>> minheap; // <vertex, weight>
     minheap.push({source, 0});
     while(!minheap.empty())
     {
