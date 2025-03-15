@@ -26,12 +26,29 @@ bool edit_distance_within(const std::string& str1, const std::string& str2, int 
     {
         string shorter_str = str1_len < str2_len ? str1 : str2;
         string longer_str = str1_len > str2_len ? str1 : str2;
-        for (size_t i = 0; i <= shorter_str.length(); ++i)
+        // for (size_t i = 0; i <= shorter_str.length(); ++i)
+        // {
+        //     string modified = shorter_str.substr(0,i) + longer_str[i] + shorter_str.substr(i);
+        //     if (modified == longer_str) return true;
+        // }
+        // return false;
+        int s_len = shorter_str.length();
+        int l_len = longer_str.length();
+        int i = 0, j = 0;
+        while(i < s_len && j < l_len)
         {
-            string modified = shorter_str.substr(0,i) + longer_str[i] + shorter_str.substr(i);
-            if (modified == longer_str) return true;
+            if(shorter_str[i] == longer_str[j])
+            {
+                ++i;
+                ++j;
+            }
+            else
+            {
+                ++j;
+                if(j - i > d) return false;
+            }
         }
-        return false;
+        return true;
     }
     return false;
 }
